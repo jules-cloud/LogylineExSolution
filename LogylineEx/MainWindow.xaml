@@ -1,0 +1,59 @@
+﻿<Window x:Class="LogylineEx.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LogylineEx"
+        mc:Ignorable="d"
+        Title="SuperAuto3000+ERP" FontSize="32" Height="800" Width="1450">
+    <Window.DataContext>
+        <local:DetailsModel></local:DetailsModel>
+    </Window.DataContext>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                <Setter Property="Width" Value="360"></Setter>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Visibility="Collapsed" Name="exportChoice">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="1" Command="{Binding IntoCSV}" CommandParameter="{Binding ElementName=listedesvehicule}">CSV</Button>
+            <Button Grid.Row="1" Command="{Binding IntoXML}" CommandParameter="{Binding ElementName=listedesvehicule}" Grid.Column="1">xml</Button>
+        </Grid>
+        <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" >SuperAuto3000+ERP</Label>
+        <Button HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Command="{Binding Export}" CommandParameter="{Binding ElementName=exportChoice}">export des stocks</Button>
+        <Button Command="{Binding Leave}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="3">quitter</Button>
+
+        <Button Grid.Column="0" Grid.Row="2" Command="{Binding OpenDetailWindow}" CommandParameter="{Binding ElementName=listedesvehicule,Path=SelectedIndex}">details</Button>
+        <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">Nom</Label>
+        <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Padding="200,0,0,0">stocks</Label>
+        <ListBox x:Name="listedesvehicule" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"  ItemsSource="{Binding Details}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Name ="nom" Content="{Binding Nom}"></Label>
+                        <Label Content="{Binding Quantite}" Padding="100,0,0,0"></Label>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Window>
