@@ -1,0 +1,26 @@
+<stock>
+<vehicule>
+<name>voiture A</name>
+<Quantite>17</Quantite>
+</vehicule>
+<vehicule>
+<name>voiture B</name>
+<Quantite>70</Quantite>
+</vehicule>
+<vehicule>
+<name>voiture C</name>
+<Quantite>13</Quantite>
+</vehicule>
+<vehicule>
+<name>voiture D</name>
+<Quantite>4</Quantite>
+</vehicule>
+<vehicule>
+<name>Moto X</name>
+<Quantite>89</Quantite>
+</vehicule>
+<vehicule>
+<name>Moto Y</name>
+<Quantite>50</Quantite>
+</vehicule>
+</stock>
